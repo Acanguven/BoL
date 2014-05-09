@@ -1,6 +1,6 @@
 if myHero.charName ~= "Syndra" then return end
 
-local version = 1.06
+local version = 1.07
 local AUTOUPDATE = true
 local SCRIPT_NAME = "Syndra"
 
@@ -40,7 +40,7 @@ local _QE = 1337
 
 --SpellData
 local Ranges = {[_Q] = 790,       [_W] = 925,  [_E] = 700,       [_R] = 675}
-local Widths = {[_Q] = 125,       [_W] = 125,  [_E] = 45 * 0.5,  [_R] = 1,    [_QE] = 60}
+local Widths = {[_Q] = 125,       [_W] = 190,  [_E] = 45 * 0.5,  [_R] = 1,    [_QE] = 60}
 local Delays = {[_Q] = 0.6,       [_W] = 0.25, [_E] = 0.25,      [_R] = 0.25, [_QE] = 1800} ---_QE delay updates in function of _E delay + Speed and the distance to the ball
 local Speeds = {[_Q] = math.huge, [_W] = 1450, [_E] = 2500,      [_R] = 1,    [_QE] = 1600}
 
