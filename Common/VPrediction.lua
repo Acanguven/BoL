@@ -1,4 +1,4 @@
-local version = "2.5"
+local version = "2.51"
 local TESTVERSION = false
 local AUTOUPDATE = true
 local UPDATE_HOST = "raw.github.com"
@@ -288,7 +288,7 @@ function VPrediction:IsImmobile(unit, delay, radius, speed, from, spelltype)
 	if self.TargetsImmobile[unit.networkID] then
 		local ExtraDelay = speed == math.huge and  0 or (GetDistance(from, unit) / speed)
 		if (self.TargetsImmobile[unit.networkID] > (self:GetTime() + delay + ExtraDelay) and spelltype == "circular") then
-			return true, Vector(unit.visionPos), Vector(unit.visionPos) + (radius) * (Vector(from) - Vector(unit.visionPos)):normalized()
+			return true, Vector(unit.visionPos), Vector(unit.visionPos) + (radius/3) * (Vector(from) - Vector(unit.visionPos)):normalized()
 		elseif (self.TargetsImmobile[unit.networkID] + (radius / unit.ms)) > (self:GetTime() + delay + ExtraDelay) then
 			return true, Vector(unit.visionPos), Vector(unit.visionPos)
 		end
@@ -643,7 +643,7 @@ function VPrediction:GetBestCastPosition(unit, delay, radius, range, speed, from
 
 		if self.ShotAtMaxRange and HitChance ~= 0 and spelltype == "circular" and (GetDistanceSqr(from, CastPosition) > range ^ 2) then
 			if GetDistanceSqr(from, Position) <= (range + radius / 1.4) ^ 2 then
-				if GetDistanceSqr(from, Position) <= range then
+				if GetDistanceSqr(from, Position) <= range * range then
 					CastPosition = Position
 				else
 					CastPosition = Vector(from) + range * (Vector(Position) - Vector(from)):normalized()
